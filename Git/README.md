@@ -49,12 +49,12 @@ git merga 分支名  # 把指定的分支合并到当前分支上
 
 解决步骤：先进行正常合并，然后会提示合并冲突，再手动打开冲突文件，将里面冲突的内容修改，最后进行 commit，这次的 commit 中不要指定文件名。
 
-## Github
+## 四、Github
 
 远程仓库操作：
 
 ```bash
 git remote -v  # 查看当前所有远程地址别名
 git remote add 别名 远程地址  # 起别名
-git pus
+git push 别名 分支
 ```
