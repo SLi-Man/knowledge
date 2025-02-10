@@ -13,7 +13,7 @@ git config --global user.email 邮箱
 
 ### 二、Git 命令
 
-初始化本地库：
+基本操作：
 
 ```bash
 git init  # 初始化本地库
@@ -22,6 +22,12 @@ git add 文件名  # 添加暂存区
 git rm --cached 文件名  # 删除暂存区
 git commit -m "日志信息" 文件名  # 提交本地库
 
-git reflog  # 查看引用日志信息
-git log  # 查看日志
+git reflog  # 查看版本信息
+git log  # 查看版本详细信息
+```
+
+版本穿梭：
+
+```bash
+
 ```
