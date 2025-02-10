@@ -4,7 +4,7 @@
 
 Git 的配置文件根据作用域划分，分别在`/etc/gitconfig`(全局)、`~/.gitconfig`(用户)、`.git/config`（仓库）三个地方，使用 git 命令设置默认放在用户目录下。
 
-设置用户签名：（用户签名与Github或其它托管中心的账号无关）
+设置用户签名：（用户签名与 Github 或其它托管中心的账号无关）
 
 ```bash
 git config --global user.name 用户名
@@ -29,5 +29,18 @@ git log  # 查看版本详细信息
 版本穿梭：
 
 ```bash
+git reset --hard 版本号
+```
 
+### 三、Git 分支
+
+Git 分支可以将不同程序员开发的不同功能与主线分离，并进行不同功能的并行开发，得以提高开发效率。
+
+分支的操作：
+
+```bash
+git branch 分支名  # 创建分支
+git branch -v  # 查看分支
+git checkout 分支名  # 切换分支
+git merga 分支名  # 把指定的分支合并到当前分支上
 ```
