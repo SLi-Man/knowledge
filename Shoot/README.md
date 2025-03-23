@@ -3,4 +3,3 @@
 - [摄影基础](./Basics.md)
 - [如何购买相机](./purchase.md)
 - [如何使用相机](./useCamera.md)
-- LR入门
