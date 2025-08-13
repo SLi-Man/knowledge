@@ -66,10 +66,16 @@ git pull 别名 分支  # 将远程仓库对于分支最新内容拉下里后与
 需要先生成RSA密钥对：
 
 ```bash
-ssh-keygen -t rsa -C 描述
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 
-然后去代码托管平台的账户设置中添加公钥即可。
+然后去代码托管平台的账户设置中添加公钥。
+
+测试连接：
+
+```bash
+ssh -T git@github.com
+```
 
 ## 五、IDE 配置
 
