@@ -9,4 +9,4 @@
 
 ## 相关链接
 
-(https://club.fnnas.com/forum.php?mod=viewthread&tid=8470)
+[官方应用商店里的HomeAssistant无法运行米家HA插件怎么办？如何更新](https://club.fnnas.com/forum.php?mod=viewthread&tid=8470)
