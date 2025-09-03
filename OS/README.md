@@ -2,6 +2,6 @@
 
 ```bash
 OS
-├── Linux
-└── MacOS
+├── Linux/
+└── MacOS/
 ```

@@ -75,7 +75,7 @@
 - 焦段
 - 对焦距离
 
-![depthOfField](./assets/depthOfField.png)
+![depthOfField](assets/depthOfField.png)
 
 ### 不同题材适合的常见镜头
 
