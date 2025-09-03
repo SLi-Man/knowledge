@@ -13,7 +13,7 @@
 - [OS](OS/README.md)
   - Linux
     - [Centos](OS/Linux/centos.md)
-  - [Mac OS](OS/MacOS/README.md)
+  - [MacOS](OS/MacOS/README.md)
 - Security
   - [Asymmetric Encryption](Security/Asymmetric%20Encryption.md)
 - [Shoot](Shoot/README.md)
