@@ -2,8 +2,6 @@
 
 ```bash
 OS
-
 ├── Linux
-
 └── MacOS
 ```
