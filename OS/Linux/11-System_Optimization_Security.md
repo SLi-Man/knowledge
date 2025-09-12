@@ -1,4 +1,4 @@
-# 系统优化
+# 系统优化与安全
 
 ## 1 查看系统的版本号
 
@@ -37,7 +37,7 @@ date
     -s <datetime> # 手动设置系统时间
 Thu Sep  4 19:46:36 CST 2025
 # CST(China Standard Time) 中国标准时间
-# 比 UTC(Coordinated Universal Time, 协调世界时) 早 8 小时
+# 比 UTC(Coordinated Universal Time, 协调世界时) 晚 8 小时
 ```
 
 ### 3.2 查看硬件时间
@@ -67,7 +67,7 @@ hwclock -w  # 将硬件时间设置为当前系统时间
 
 SELinux(Security-Enhanced Linux) 是美国国家安全局（NSA）开发的安全子系统。
 
-查看 SELinux：
+查看 SELinux 状态：
 
 ```bash
 getenforce
@@ -95,62 +95,6 @@ systemctl disable firewalld
 ```
 
 
-
-## 6 YUM 仓库优化
-
-### 6.1 查看当前系统仓库：
-
-```bash
-yum repolist
-Loaded plugins: fastestmirror
-Loading mirror speeds from cached hostfile
- * base: mirrors.aliyun.com       # 默认仓库地址
- * extras: mirrors.aliyun.com     
- * updates: mirrors.aliyun.com
-repo id                     repo name                                    status
-base/7/x86_64               CentOS-7 - Base - mirrors.aliyun.com         10,072
-extras/7/x86_64             CentOS-7 - Extras - mirrors.aliyun.com       526
-updates/7/x86_64            CentOS-7 - Updates - mirrors.aliyun.com      6,173
-repolist: 16,771    # 默认仓库软件的个数
-```
-
-### 6.2 修改默认的仓库
-
-阿里云仓库地址：`developer.aliyun.com/mirror`
-
-LinuxMirrors：`linuxmirrors.cn`
-
-#### 6.2.1 备份默认仓库
-
-```bash
-mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
-```
-
-#### 6.2.2 下载仓库到本地
-
-```bash
-curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
-```
-
-#### 6.2.3 检查配置是否正确
-
-```bash
-yum repolist
-```
-
-### 6.3 配置扩展仓库
-
-配置 epel 扩展仓库：
-
-```bash
-wget -O /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo
-```
-
-尝试安装 sl 和 cowsay：
-
-```bash
-yum -y install sl cowsay
-```
 
 
 
@@ -181,3 +125,11 @@ vim /etc/locale.conf # 永久修改
 ```
 
  
+
+## 9 bash 命令补全
+
+```bash
+yum -y install bash-completion.noarch bash-completion-extras.noarch
+# 重启生效
+```
+
