@@ -1,6 +1,6 @@
 # 网络配置
 
-### 一、网卡配置文件
+## 一、网卡配置文件
 
 位置：`/etc/sysconfig/network-scripts/ifcfg-eth0`（CentOS7）
 

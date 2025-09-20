@@ -5,12 +5,8 @@
 ### 1.1 YUM 命令
 
 ```bash
-yum [选项] [参数] [软件包名称]
+yum [-y] [参数] [软件包名称]
 ```
-
-选项：
-
-- `-y`：自动确认
 
 参数：
 
@@ -82,11 +78,36 @@ yum -y install sl cowsay
 
 ---
 
-## 二、RPM软件包
+## 二、RPM 软件包管理
+
+rpm（Red Hat Package Manager），是用于管理Linux各项套件的程序。它**不支持自动管理包依赖**。
+
+### 2.1 命令语法
 
 语法格式：
 
 ```bash
-rpm -[ivh] 软件包.rpm
+rpm [选项] [包名]
 ```
+
+选项：
+
+- `-i`：install，安装
+- `-v`：verbose，显示更详细的信息
+- `-h`：hash，打印 #，显示安装进度
+- `-e`：erase，卸载
+- `-q`：query，查询包名
+- `-a`：all，查询全部已安装包
+- `-l`：list，列出包中的文件
+
+示例：
+
+```bash
+rpm -ivh zip-3.0-11.el7.x86_64.rpm    # 安装指定包
+rpm -e zip        # 卸载指定包
+rpm -qa zip       # 查询软件包是否已安装
+rpm -ql cowsay    # 查看包安装了哪些文件
+```
+
+
 

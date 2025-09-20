@@ -73,7 +73,7 @@
 
 ## 六、系统负载监控
 
-**[uptime](01-Basic_Commands.md)**：查看系统运行时间、用户数和平均负载。
+**[uptime](01-Basic_Commands.md#uptime)**：查看系统运行时间、用户数和平均负载。
 
 ```bash
  15:44:16 up  1:06,  1 user,  load average: 0.00, 0.04, 0.17
