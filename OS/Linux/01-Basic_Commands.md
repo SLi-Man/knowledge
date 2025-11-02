@@ -561,7 +561,9 @@ tac test.txt
 cat test.txt| tac
 ```
 
-### 5.7 sed
+### 5.7 sed - 流编辑器
+
+<span id="sed"></span>
 
 ```bash
 sed [选项] '/过滤内容/' 文件
@@ -579,14 +581,18 @@ sed '模式 动作'  文件
 - n：指定数字，表示过滤指定第
 - n,m：区间过滤，过滤第 n 行至第 m 行
 - `$`：末尾行
-- `/Regex/`：模糊过滤，支持正则表达式
+- `/Regex/`：模糊过滤，找到指定内容的**行**
 - /Regex1/,/Regex2/：区间过滤，过滤表达式1至表达式2之间的内容
 
-行为：
+动作：
 
 - `p`：print，打印，一般结合`-n`使用
 - `d`：delete，删除
-- `s#Regex1#Regex2#g`：全局替换
+- `i`：在某一行的上一行插入新内容
+- `a`：在某一行的下一行插入新内容
+- `c`：替换某一行内容
+- `w`：找到的行保存到文件
+- `s#Regex1#Regex2#g`：全局替换，分隔符还可以用`/`
 
 示例：
 
@@ -595,6 +601,58 @@ sed -n '2,$p' test.txt     # 打印到行尾
 ifconfig eth0| sed -n '2p' # sed 连接管道符
 sed '2,4d' test.txt        # 删除2-4行 
 sed 's/a/b/g' test.txt     # 将文件中的 a 替换为 b
+sed '3i aaa' test.txt      # 在第3行的上一行插入 aaa
+sed '3a aaa' test.txt      # 在第3行的下一行插入 aaa
+sed '3c aaa' test.txt      # 将第3行替换为 aaa
+sed '3w new.txt' test.txt  # 将第3行保存到 new.txt
+# 后向引用
+sed -r 's#(.*)#touch \1.txt#g'|bash test.txt
+# 取出网卡中的ip
+ifconfig eth0| sed -n '2p'| sed -r 's#^.*inet (.*) netm.*$#\1#g'
+```
+
+### 5.8 awk - 编程
+
+```bash
+awk [选项] 动作 文件名
+```
+
+选项：
+
+- `-F`：指定分隔符
+
+**内置变量**：
+
+- `NR`：存放着文件中每行的行号
+- `NF`：最后一列的列号
+- `FILENAME`：当前文件名
+- `FS`：字段分隔符，默认是空格和制表符
+- `RS`：行分隔符，用于分割每一行，默认是换行符
+- `OFS`：输出字段的分隔符，用于打印时分割字段，默认为空格
+- `OFMT`：数字输出的格式，默认为 `%.6g`
+
+示例：
+
+```bash
+# 输出第3行
+awk 'NR==3' file
+# 输出 2-5 行
+awk 'NR>=2&&NR<=5' file
+# 模糊过滤
+awk '/内容/' file 
+# 取列
+awk '{print $0}' file
+# 输出第1列和第2列
+awk '{print $1"\t"$2}' file
+# 输出每行最后一列的列号
+awk '{print NF}' file
+# 输出每行最后一列的内容
+awk '{print $NF}' file
+# 指定分隔符
+awk -F "[:/]+" '{print $1}' file
+# 匹配符，对某一列使用正则
+awk '$2 ~ /y$/' file
+  
 ```
 
 
