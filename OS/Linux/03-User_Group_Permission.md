@@ -34,23 +34,7 @@ root:x:0:0:root:/root:/bin/bash
 - 第6列：家目录
 - 第7列：命令解释器
 
-### 2.2 用户密码信息 shadow
-
-```bash
-sliman:$6$E6bAwlD5$KBfnX1wT8fPz2MyFkAmL5cJLHZFGa3KajFAXE3dm9SQBR53/ebThIsQUrrl2krf1ViiBTTOfOpzXx3ghbWifj/:20397:0:99999:7:::
-```
-
-- 第1列：用户名
-- 第2列：加密密码
-- 第3列：最后修改时间
-- 第4列：最小修改间隔，0表示可随时修改
-- 第5列：密码有效期
-- 第6列：过期前警告天数
-- 第7列：密码过期宽限
-- 第8列：账号失效日期
-- 第9列：保留字段
-
-### 2.3 用户组信息 group
+### 2.2 用户组信息 group
 
 ```bash
 root:x:0:
@@ -60,17 +44,6 @@ root:x:0:
 - 第2列：组密码
 - 第3列：GID
 - 第4列：组成员列表，**不含组主用户**
-
-### 2.4 用户组密码信息 gshadow
-
-```bash
-root:::
-```
-
-- 第1列：组名
-- 第2列：组密码**（已淘汰功能）**
-- 第3列：组管理员
-- 第4列：组成员列表
 
 
 
@@ -89,6 +62,146 @@ root:::
 <span id="interviewQuestion"></span>
 
 1. 注释掉 `/etc/profile` 中的`PS1` 赋值行（如有）
+
 2. 删除/备份家目录下的 `.bash_profile` 和 `.bashrc`
+
 3. 命令 `cp /etc/skel/.* .` 拷贝 `skel` 目录下的所有文件到家目录
+
 4. 重新进入会话
+
+    
+
+## 四、用户相关命令
+
+### 4.1 创建用户 - useradd
+
+语法格式：
+
+```bash
+useradd [参数] <用户名>
+```
+
+参数：
+
+- `-s` ：指定命令解释器
+- `-u` ：指定UID
+- `-g` ：指定GID
+- `-M` ： 不创建家目录 
+- `-G`：附加组
+
+案例：
+
+```bash
+# 创建一个虚拟用户test01 uid888 gid888 不创建家目录 不允许登录系统
+groupadd -g888 test01  # 一定要先创建组
+useradd -u888 -g888 -M -s /sbin/nologin test01
+
+# 批量创建10个用户
+
+```
+
+### 4.2 删除用户 - userdel
+
+```bash
+userdel test01  # 删除用户，但保留用户相关文件（不推荐）
+userdel -r test01  # 删除用户，同时删除用户相关的所有文件
+```
+
+### 4.3 创建组 - groupadd
+
+```bash
+groupadd -g888 test01  # 创建一个UID为888的组
+```
+
+### 4.4 删除组 - groupdel
+
+```bash
+groupdel test01
+```
+
+### 4.5 查看用户ID - id
+
+```bash
+> id sliman
+uid=1000(sliman) gid=1000(sliman) groups=1000(sliman)
+```
+
+### 4.6 设置密码 - passwd
+
+方法一：交互式设置密码
+
+```bash
+passwd  # 设置当前用户密码
+passwd sliman  # 设置指定用户密码
+```
+
+方法二：免交互式设置密码
+
+```bash
+echo 123456 | passwd --stdin sliman
+```
+
+PS：Linux 不允许未设置密码的用户登录
+
+### 4.7 修改文件属主属组 - chown
+
+语法格式：
+
+```bash
+chown [-R] [用户].[组] <文件/目录名>
+```
+
+- `-R` ：递归修改目录及其子目录下的所有文件属主属组
+
+案例：
+
+```bash
+# 修改文件属主和属组为root
+chown root.root 1.txt
+# 设置目录及目录下的所有文件属组为root
+chown -R .root dir/
+```
+
+
+
+## 五、sudo 提权
+
+普通用户下可以通过sudo命令来获取部分root的权限。
+
+**修改sudo配置：**
+
+方法一：`visudo` 命令（推荐）visudo命令支持语法检查
+
+方法二：手动编辑 `/etc/sudoers` 文件
+
+跳转至100行，使用如下格式添加所有权限
+
+```bash
+root    ALL=(ALL)   ALL
+```
+
+例：
+
+```bash
+# 添加cat命令给用户
+sliman    ALL=(ALL)    /usr/bin/cat
+
+# 用户无需输入密码使用命令
+sliman    ALL=(ALL)    NOPASSWD: ALL
+
+# 取反，不允许使用某命令
+sliman    ALL=(ALL)    !/usr/bin/mv,!/usr/bin/rm
+```
+
+**查询当前用户权限：**
+
+```bash
+sudo -l
+```
+
+**刷新sudo密码缓存（即下次使用sudo需要重新输入密码）：**
+
+```
+sudo -k
+```
+

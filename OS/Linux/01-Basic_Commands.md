@@ -60,7 +60,7 @@ Linux提供了多种获取命令帮助的方式：
 
 ## 二、Shell 特殊符号与元字符
 
-### 2.1 数据流重定向 (Data Redirection)
+### 2.1 数据流重定向
 
 #### 2.1.1 标准流概念
 
@@ -608,7 +608,7 @@ sed '3w new.txt' test.txt  # 将第3行保存到 new.txt
 # 后向引用
 sed -r 's#(.*)#touch \1.txt#g'|bash test.txt
 # 取出网卡中的ip
-ifconfig eth0| sed -n '2p'| sed -r 's#^.*inet (.*) netm.*$#\1#g'
+ifconfig eth0 | sed -n '2p' | sed -r 's#^.*inet (.*) netm.*$#\1#g'
 ```
 
 ### 5.8 awk - 编程
@@ -650,7 +650,7 @@ awk '{print $1"\t"$2}' file
 awk '{print NF}' file
 # 输出每行最后一列的内容
 awk '{print $NF}' file
-# 指定分隔符
+# 指定分隔符为:或者/
 awk -F "[:/]+" '{print $1}' file
 # 匹配符，对某一列使用正则
 awk '$2 ~ /y$/' file
@@ -732,6 +732,31 @@ lscpu  # 显示CPU架构信息
 ```bash
 type 命令名  # 显示命令的类型（内置命令或外部命令）
 ```
+
+### 6.9 last - 登录日志（按次）
+
+```bash
+> last
+root     pts/1        123.117.178.119  Wed Nov 12 20:10 - 20:10  (00:00)    
+root     pts/0        123.117.178.119  Wed Nov 12 19:59   still logged in   
+reboot   system boot  3.10.0-1160.119. Thu Nov 13 03:58 - 22:41  (-5:-17)   
+root     pts/2        123.117.178.119  Mon Nov 10 00:23 - crash (3+03:35)   
+root     pts/1        123.117.178.119  Sun Nov  9 23:09 - crash (3+04:48)   
+```
+
+### 6.10 lastlog - 登录日志（按用户）
+
+```bash
+> lastlog
+Username         Port     From             Latest
+root             pts/1    123.117.178.119  Wed Nov 12 20:10:29 +0800 2025
+bin                                        **Never logged in**
+daemon                                     **Never logged in**
+adm                                        **Never logged in**
+lp                                         **Never logged in**
+```
+
+
 
 ---
 

@@ -44,3 +44,11 @@ nameserver 8.8.4.4
 netstat -tnulp
 ```
 
+
+
+查看公网IP：
+
+```bash
+curl cip.cc
+```
+
