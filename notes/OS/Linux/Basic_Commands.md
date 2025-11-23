@@ -1,4 +1,4 @@
-#  Linux 基础命令
+# Linux 基础命令
 
 ## 一、命令行基础与语法
 
@@ -15,6 +15,7 @@ Linux命令遵循特定的语法结构：
 - **参数**：命令操作的对象，如文件名、目录名等
 
 示例：
+
 ```bash
 ls -l /home/user  # ls是命令，-l是选项，/home/user是参数
 ```
@@ -24,7 +25,6 @@ ls -l /home/user  # ls是命令，-l是选项，/home/user是参数
 Linux命令支持两种主要类型的选项：
 
 1. **短选项**：单字母选项，前面加一个连字符`-`
-   
 2. **长选项**：完整的单词选项，前面加两个连字符`--`
 
 ### 1.3 获取帮助
@@ -32,21 +32,25 @@ Linux命令支持两种主要类型的选项：
 Linux提供了多种获取命令帮助的方式：
 
 1. **--help 选项**：大多数命令都支持此选项，提供简要用法说明
+
    ```bash
    ls --help
    ```
 
 2. **man 命令**：查看命令的完整手册页（manual page）
+
    ```bash
    man ls  # 查看ls命令的详细手册
    ```
 
 3. **info 命令**：某些命令提供更详细的info文档
+
    ```bash
    info ls
    ```
 
 4. **whatis 命令**：显示命令的简短描述
+
    ```bash
    whatis ls
    ```
@@ -66,7 +70,7 @@ Linux提供了多种获取命令帮助的方式：
 
 Linux系统为每个进程提供了三个标准流：
 
-1. **标准输入 (stdin, 文件描述符0)**：默认来自键盘的输入 
+1. **标准输入 (stdin, 文件描述符0)**：默认来自键盘的输入
 2. **标准输出 (stdout, 文件描述符1)**：默认输出到终端屏幕
 3. **标准错误 (stderr, 文件描述符2)**：默认输出错误信息到终端屏幕
 
@@ -95,6 +99,7 @@ Linux系统为每个进程提供了三个标准流：
 ```
 
 示例：
+
 ```bash
 ls existent nonexistent &> output.log  # 将所有输出保存到output.log
 ```
@@ -108,6 +113,7 @@ ls existent nonexistent &> output.log  # 将所有输出保存到output.log
 ```
 
 示例：
+
 ```bash
 wc -l < document.txt          # 统计文件行数
 sort < unsorted.txt > sorted.txt  # 从文件读取内容并排序后输出到另一文件
@@ -134,6 +140,7 @@ grep "hello" <<< "hello world"  # 在字符串中搜索hello
 ```
 
 示例：
+
 ```bash
 # 运行命令但不关心输出
 find / -name "*.log" 2> /dev/null
@@ -153,6 +160,7 @@ echo "错误信息" >&2  # 将消息输出到标准错误
 ```
 
 示例：
+
 ```bash
 ls -l | tee directory_listing.txt  # 显示并保存目录列表
 ```
@@ -167,6 +175,7 @@ ls -l | tee directory_listing.txt  # 显示并保存目录列表
 ```
 
 示例：
+
 ```bash
 # 将标准错误重定向到标准输出，然后一起重定向到文件
 命令 > output.log 2>&1
@@ -202,6 +211,7 @@ ls -l | tee filelist.txt | grep "\.txt$"
 ```
 
 示例：
+
 ```bash
 # 统计成功和失败的操作
 (ls existent && ls nonexistent) > success.log 2> failure.log
@@ -238,9 +248,7 @@ ps aux | grep nginx  # 查找 nginx 的进程
 python3 app.py &
 ```
 
-进程管理相关移步[->](04-Process_Management.md)
-
-
+进程管理相关移步[->](Process_Management.md)
 
 ## 三、文件与目录管理
 
@@ -249,7 +257,9 @@ python3 app.py &
 ```bash
 ls [选项] [目录名]
 ```
+
 选项：
+
 - `-l`：详细信息（长格式显示）
 - `-a`：显示所有文件，包括隐藏文件
 - `-d`：查看目录本身的权限和大小信息
@@ -259,6 +269,7 @@ ls [选项] [目录名]
 - `-h`：人性化显示文件大小（与-l一起使用）
 
 示例：
+
 ```bash
 ls -laht  # 显示所有文件的详细信息，按时间排序，人性化显示大小
 ```
@@ -268,7 +279,9 @@ ls -laht  # 显示所有文件的详细信息，按时间排序，人性化显�
 ```bash
 cd [目录路径]
 ```
+
 特殊路径：
+
 - `cd ~` 或 `cd`：返回用户家目录
 - `cd -`：返回上一个工作目录
 - `cd ..`：返回上级目录
@@ -284,10 +297,13 @@ pwd  # 显示当前所在目录的绝对路径
 ```bash
 mkdir [选项] 目录名
 ```
+
 选项：
+
 - `-p`：创建多级目录（父目录不存在时一并创建）
 
 示例：
+
 ```bash
 mkdir -p project/src/main  # 创建多级目录
 ```
@@ -303,7 +319,9 @@ rmdir 目录名  # 只能删除空目录
 ```bash
 cp [选项] 源文件 目标文件
 ```
+
 选项：
+
 - `-r`：递归复制（用于目录）
 - `-i`：交互模式（覆盖前提示）
 - `-v`：显示复制过程
@@ -315,7 +333,9 @@ cp [选项] 源文件 目标文件
 ```bash
 mv [选项] 源文件 目标文件
 ```
+
 选项：
+
 - `-i`：交互模式（覆盖前提示）
 - `-v`：显示移动过程
 
@@ -326,7 +346,9 @@ mv [选项] 源文件 目标文件
 ```bash
 rm [选项] 文件或目录
 ```
+
 选项：
+
 - `-r`：递归删除（用于目录）
 - `-f`：强制删除（不提示）
 - `-i`：交互模式（删除前提示）
@@ -382,9 +404,9 @@ find ./ -name "all.txt"|xargs -i cp {} /opt/ # 通过`xargs`的`-i`参数将结�
 find ./ -name "all.txt" -exec rm {} \;    # 用-exec参数转交find结果给其他命令
 ```
 
-**方法 3** - 反引号或`$()` 
+**方法 3** - 反引号或`$()`
 
-```bash 
+```bash
 rm -f `find ./ -name "all.txt"`
 cp -f $(find ./ -name "all.txt")
 ```
@@ -406,8 +428,6 @@ Change: 2025-09-03 22:46:22.994000000 +0800  # 修改属性时间，内容被更
  Birth: -
 ```
 
-
-
 ---
 
 ## 三、文件内容查看与操作
@@ -417,7 +437,9 @@ Change: 2025-09-03 22:46:22.994000000 +0800  # 修改属性时间，内容被更
 ```bash
 cat [选项] 文件名
 ```
+
 选项：
+
 - `-n`：显示行号
 - `-A`：显示所有字符（包括特殊字符）
 
@@ -426,10 +448,13 @@ cat [选项] 文件名
 ```bash
 less [选项] 文件名
 ```
+
 选项：
+
 - `-N`：显示行号
 
 常用快捷键：
+
 - 空格/f：下一页
 - b：上一页
 - /：搜索内容
@@ -444,7 +469,9 @@ less [选项] 文件名
 ```bash
 head [选项] 文件名
 ```
+
 选项：
+
 - `-n 数字`：显示前n行（可简写为`-数字`）
 
 ### 4.4 tail - 显示文件末尾部分
@@ -452,7 +479,9 @@ head [选项] 文件名
 ```bash
 tail [选项] 文件名
 ```
+
 选项：
+
 - `-n 数字`：显示后n行（可简写为`-数字`）
 - `-f`：实时追踪文件变化（常用于查看日志）
 - `-F`：类似于`-f`，但会在文件被移动或重命名后继续追踪
@@ -472,16 +501,16 @@ tr 待替换字符 欲替换字符 < testfile.txt
 
 ---
 
-## 四、文本处理 
+## 四、文本处理
 
-### 5.1 grep - 文本过滤
-
-<span id='grep'></span>
+### 5.1 grep - 文本过滤{#grep}
 
 ```bash
 grep [选项] '模式' 文件
 ```
+
 选项：
+
 - `-r`：递归搜索目录中的文件（常用）
 - `-v`：反向选择（常用，显示不匹配的行）
 - `-i`：忽略大小写
@@ -499,7 +528,9 @@ grep [选项] '模式' 文件
 ```bash
 wc [选项] 文件
 ```
+
 选项：
+
 - `-l`：统计行数
 - `-w`：统计单词数
 - `-c`：统计字节数
@@ -510,7 +541,9 @@ wc [选项] 文件
 ```bash
 sort [选项] 文件
 ```
+
 选项：
+
 - `-r`：反向排序（降序）
 - `-n`：按数值排序
 - `-k`：指定排序的列
@@ -521,7 +554,9 @@ sort [选项] 文件
 ```bash
 uniq [选项] 文件
 ```
+
 选项：
+
 - `-c`：统计每行重复次数
 - `-d`：只显示重复的行
 - `-u`：只显示不重复的行
@@ -540,11 +575,14 @@ cat /etc/passwd|tr ":/0-9x" " "|xargs -n 1|sort|uniq -c|sort -rn|head
 ```bash
 命令 | xargs [选项] 目标命令  # 目标命令的别名将失效
 ```
+
 选项：
+
 - `-n 数字`：每次传递指定数量的参数
 - `-I {}`：指定替换字符串
 
 示例：
+
 ```bash
 find . -name "*.txt" | xargs rm  # 删除所有txt文件
 ```
@@ -561,9 +599,7 @@ tac test.txt
 cat test.txt| tac
 ```
 
-### 5.7 sed - 流编辑器
-
-<span id="sed"></span>
+### 5.7 sed - 流编辑器{#sed}
 
 ```bash
 sed [选项] '/过滤内容/' 文件
@@ -599,7 +635,7 @@ sed '模式 动作'  文件
 ```bash
 sed -n '2,$p' test.txt     # 打印到行尾
 ifconfig eth0| sed -n '2p' # sed 连接管道符
-sed '2,4d' test.txt        # 删除2-4行 
+sed '2,4d' test.txt        # 删除2-4行
 sed 's/a/b/g' test.txt     # 将文件中的 a 替换为 b
 sed '3i aaa' test.txt      # 在第3行的上一行插入 aaa
 sed '3a aaa' test.txt      # 在第3行的下一行插入 aaa
@@ -641,7 +677,7 @@ awk 'NR==3' file
 # 输出 2-5 行
 awk 'NR>=2&&NR<=5' file
 # 模糊过滤
-awk '/内容/' file 
+awk '/内容/' file
 # 取列
 awk '{print $0}' file
 # 输出第1列和第2列
@@ -657,11 +693,8 @@ awk '$2 ~ /y$/' file
 # 算术
 > echo 10 20 | awk '{print $1+$2}'
 30
-  
+
 ```
-
-
-
 
 ---
 
@@ -672,7 +705,9 @@ awk '$2 ~ /y$/' file
 ```bash
 df [选项]
 ```
+
 选项：
+
 - `-h`：人性化显示大小（KB, MB, GB）
 - `-i`：显示inode使用情况
 
@@ -681,7 +716,9 @@ df [选项]
 ```bash
 du [选项] 文件或目录
 ```
+
 选项：
+
 - `-h`：人性化显示大小
 - `-s`：只显示总大小（不显示子目录）
 - `--max-depth=N`：指定显示深度
@@ -697,13 +734,13 @@ du -sh /etc   # 显示 /etc 目录的大小
 ```bash
 free [选项]
 ```
+
 选项：
+
 - `-h`：人性化显示大小
 - `-s 秒数`：持续监控（指定间隔秒数）
 
-### 6.4 uptime - 系统运行时间
-
-<span id='uptime'></span>
+### 6.4 uptime - 系统运行时间{#uptime}
 
 ```bash
 uptime  # 显示系统运行时间、用户数和平均负载
@@ -737,11 +774,11 @@ type 命令名  # 显示命令的类型（内置命令或外部命令）
 
 ```bash
 > last
-root     pts/1        123.117.178.119  Wed Nov 12 20:10 - 20:10  (00:00)    
-root     pts/0        123.117.178.119  Wed Nov 12 19:59   still logged in   
-reboot   system boot  3.10.0-1160.119. Thu Nov 13 03:58 - 22:41  (-5:-17)   
-root     pts/2        123.117.178.119  Mon Nov 10 00:23 - crash (3+03:35)   
-root     pts/1        123.117.178.119  Sun Nov  9 23:09 - crash (3+04:48)   
+root     pts/1        123.117.178.119  Wed Nov 12 20:10 - 20:10  (00:00)
+root     pts/0        123.117.178.119  Wed Nov 12 19:59   still logged in
+reboot   system boot  3.10.0-1160.119. Thu Nov 13 03:58 - 22:41  (-5:-17)
+root     pts/2        123.117.178.119  Mon Nov 10 00:23 - crash (3+03:35)
+root     pts/1        123.117.178.119  Sun Nov  9 23:09 - crash (3+04:48)
 ```
 
 ### 6.10 lastlog - 登录日志（按用户）
@@ -755,8 +792,6 @@ daemon                                     **Never logged in**
 adm                                        **Never logged in**
 lp                                         **Never logged in**
 ```
-
-
 
 ---
 
@@ -773,11 +808,14 @@ which 命令名  # 显示命令的完整路径
 ```bash
 dd if=输入文件 of=输出文件 [选项]
 ```
+
 选项：
+
 - `bs=大小`：设置块大小
 - `count=数量`：设置拷贝块数
 
 示例：
+
 ```bash
 dd if=/dev/zero of=test.img bs=1M count=100  # 创建100MB的空文件
 ```
@@ -787,6 +825,7 @@ dd if=/dev/zero of=test.img bs=1M count=100  # 创建100MB的空文件
 ## 八、命令组合与管道
 
 示例：
+
 ```bash
 # 统计当前目录下文件数量
 ls -l | wc -l
