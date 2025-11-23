@@ -15,7 +15,6 @@
   "packageManager": "pnpm@10.23.0",
   "devDependencies": {
     "vite": "^7.2.4",
-    "vite-plugin-vitepress-auto-nav": "^3.0.0",
     "vitepress": "^1.6.4"
   }
 }
