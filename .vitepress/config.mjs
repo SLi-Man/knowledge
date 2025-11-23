@@ -43,6 +43,7 @@ export default defineConfig({
                 { text: '正则表达式', link: '/OS/Linux/Utilities/Regex.md' },
                 { text: 'ExifTool', link: '/OS/Linux/Utilities/ExifTool.md' },
                 { text: 'Vim', link: '/OS/Linux/Utilities/Vim.md' },
+                { text: 'Git', link: '/OS/Linux/Utilities/Git.md' },
               ]},
               { text: '基本命令', link: '/OS/Linux/Basic_Commands.md' },
               { text: '包管理', link: '/OS/Linux/Package_Management.md' },
