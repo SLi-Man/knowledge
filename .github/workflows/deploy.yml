@@ -42,7 +42,7 @@ jobs:
       - name: 安装依赖
         run: pnpm install
       - name: 打包
-        run: pnpm build
+        run: pnpm docs:build
       - name: 上传项目
         uses: actions/upload-pages-artifact@v3
         with:
