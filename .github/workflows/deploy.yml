@@ -47,6 +47,8 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: .vitepress/dist
+      - name: 列出构建目录
+        run: ls -R .vitepress/dist
 
   # 部署流程
   deploy:
