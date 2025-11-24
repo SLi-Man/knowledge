@@ -221,12 +221,21 @@ sliman    ALL=(ALL)    !/usr/bin/mv,!/usr/bin/rm
 
 mask 控制着 Linux 中文件和目录的默认权限
 
+> [!NOTE]
+> 如果UMASK值中含有奇数，则**文件**的最终权限要在相减后在奇数位 +1
+
 ```bash
 > umask
 0022
 ```
 
 - 文件默认权限 = 666 - mask
+
 - 系统默认权限 = 777 - mask
 
+> [!NOTE]
+> 如果UMASK值中含有奇数，则**文件**的最终权限要在相减后在奇数位 +1
+
+
 **笔试题：如果默认创建000属性的文件请问UMASK值是多少？**{#interviewQuestion02}
+
