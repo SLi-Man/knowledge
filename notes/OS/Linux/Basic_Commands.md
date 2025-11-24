@@ -411,7 +411,7 @@ rm -f `find ./ -name "all.txt"`
 cp -f $(find ./ -name "all.txt")
 ```
 
-### 2.10 stat - 文件状态信息
+### 2.10 stat - 文件状态信息{#stat}
 
 ```bash
 stat 文件名
