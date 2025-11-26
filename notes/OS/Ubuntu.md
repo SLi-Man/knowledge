@@ -33,6 +33,7 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 在 `~/.config/fish/config.fish` 设置生效：
 
 ```bash
+set PATH $HOME/.local/bin $PATH
 oh-my-posh init fish | source
 ```
 
