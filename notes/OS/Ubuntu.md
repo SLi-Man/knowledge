@@ -33,6 +33,7 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 在 `~/.config/fish/config.fish` 设置生效：
 
 ```bash
+set PATH $HOME/.local/bin $PATH
 oh-my-posh init fish | source
 ```
 
@@ -119,4 +120,3 @@ vim /etc/group #你应该发现你的用户名在很多个组中，全部修改�
 mv /home/<原用户名> /hom<新用户名>
 
 ```
-
