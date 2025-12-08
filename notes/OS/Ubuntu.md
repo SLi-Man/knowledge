@@ -1,10 +1,10 @@
 # Ubuntu 开箱指南
 
-## 1 Theme
+## Theme
 
 - [GNOME-macOS-Tahoe](https://github.com/kayozxo/GNOME-macOS-Tahoe)
 
-## 2 Shell
+## Shell
 
 - Fish
 
@@ -22,7 +22,7 @@ fish 的 Web 配置界面：
 fish_config
 ```
 
-### 2.1 Oh My Posh
+### Oh My Posh
 
 docs: https://ohmyposh.dev/docs
 
@@ -47,7 +47,7 @@ oh-my-posh init fish --config ~/.config/posh/bubblesextra.omp.json | source
 
 
 
-## 2 Terminal
+## Terminal
 
 - alacritty: https://github.com/alacritty/alacritty
 
@@ -77,7 +77,7 @@ cp extra/completions/alacritty.fish $fish_complete_path[1]/alacritty.fish
 echo "source $(pwd)/extra/completions/alacritty.bash" >> ~/.bashrc
 ```
 
-## 3 Tmux
+## Tmux
 
 - TPM: https://github.com/tmux-plugins/tpm
 
@@ -101,16 +101,50 @@ run '~/.tmux/plugins/tpm/tpm'
 打开 tmux，使用快捷键 `I` 安装TPM及相关插件。
 
 
+## Nvidia 驱动安装
+**关闭BIOS：Secure Boot**
 
-## 99 常用调整
+**禁用开源驱动 nouveau**
 
-### 3.1 启用 root 用户
+检查是否有 nouveau 运行
+
+```bash
+lsmod | grep nouveau
+```
+
+禁用 nouveau
+```bash
+sudo bash -c 'echo "blacklist nouveau" > /etc/modprobe.d/blacklist-nouveau.conf'
+sudo update-initramfs -u
+sudo reboot
+```
+
+**卸载旧的驱动**
+```bash
+sudo systemctl stop lightdm 
+sudo systemctl stop gdm 
+
+sudo apt purge 'nvidia*'
+sudo apt autoremove
+```
+
+**安装dkms + Nvidia官方推荐驱动**
+```bash
+sudo apt install dkms
+sudo ubuntu-drivers install
+sudo reboot
+```
+
+
+## 常用调整
+
+### 启用 root 用户
 
 ```bash
 sudo passwd root
 ```
 
-### 3.2 修改用户名
+### 修改用户名
 
 ```bash
 su # 一定要在root用户下操作
