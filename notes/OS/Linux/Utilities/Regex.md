@@ -28,4 +28,4 @@ BRE和 ERE 的区别仅仅是元字符的不同：
 
 只有在用反斜杠 `\` 进行转义的情况下，字符`( ) { }`才会在 BRE 中当做元字符处理，而在 ERE 中，任何元符号前面加上反斜杠反而会使其被当做**普通字符**来处理。
 
-正则命令：[grep](/OS/Linux/Basic_Commands.md#grep)、awk、[sed](/OS/Linux/Basic_Commands.md#sed)
+正则命令：[grep](/OS/Linux/Basic_Commands.md#grep)、[awk](/OS/Linux/Basic_Commands.md#awk)、[sed](/OS/Linux/Basic_Commands.md#sed)

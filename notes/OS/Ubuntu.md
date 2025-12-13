@@ -4,6 +4,8 @@
 
 - [GNOME-macOS-Tahoe](https://github.com/kayozxo/GNOME-macOS-Tahoe)
 
+
+
 ## Shell
 
 - Fish
@@ -77,6 +79,8 @@ cp extra/completions/alacritty.fish $fish_complete_path[1]/alacritty.fish
 echo "source $(pwd)/extra/completions/alacritty.bash" >> ~/.bashrc
 ```
 
+
+
 ## Tmux
 
 - TPM: https://github.com/tmux-plugins/tpm
@@ -101,10 +105,12 @@ run '~/.tmux/plugins/tpm/tpm'
 打开 tmux，使用快捷键 `I` 安装TPM及相关插件。
 
 
-## Nvidia 驱动安装
-**关闭BIOS：Secure Boot**
 
-**禁用开源驱动 nouveau**
+## Nvidia 驱动安装
+
+1. **关闭BIOS：Secure Boot**
+
+2. **禁用开源驱动 nouveau**
 
 检查是否有 nouveau 运行
 
@@ -119,7 +125,8 @@ sudo update-initramfs -u
 sudo reboot
 ```
 
-**卸载旧的驱动**
+3. **卸载旧的驱动**
+
 ```bash
 sudo systemctl stop lightdm 
 sudo systemctl stop gdm 
@@ -128,12 +135,14 @@ sudo apt purge 'nvidia*'
 sudo apt autoremove
 ```
 
-**安装dkms + Nvidia官方推荐驱动**
+4. **安装dkms + Nvidia官方推荐驱动**
+
 ```bash
 sudo apt install dkms
 sudo ubuntu-drivers install
 sudo reboot
 ```
+
 
 
 ## 常用调整

@@ -94,6 +94,23 @@ cat /var/spool/cron/root
 
 :::
 
+**环境变量导致的问题**
+
+- 方法一：手动指定环境变量
+
+  ```bash
+  PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin
+  ```
+
+- 方法二：执行一次系统配置文件
+
+  ```bash
+  ./etc/profile
+  ```
+
+
+- 方法三：使用绝对路径
+
 
 
 ::: tip 面试题：什么情况下系统 inode 号会占满中产生？ {#interviewQuestion01}
@@ -104,7 +121,13 @@ cat /var/spool/cron/root
 
 :::
 
+::: tip 笔试题：每天凌晨执行命令 `echo 'hello world! '` 到 `a.txt` 中{#interviewQuestion02}
 
+```bash
+00 00 * * * root echo 'hello world!' > a.txt
+```
+
+:::
 
 ---
 
