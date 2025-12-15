@@ -113,7 +113,7 @@ cat /var/spool/cron/root
 
 
 
-::: tip 面试题：什么情况下系统 inode 号会占满中产生？ {#interviewQuestion01}
+::: tip 面试题：什么情况下系统 inode 号会占满？ {#interviewQuestion01}
 
 1. 定时任务没有开启系统邮件，会在 `/var/spool/postfix/maildrop/` 中产生大量临时小文件
 2. 服务运行过程中，开发问题产生小文件
