@@ -51,6 +51,7 @@ export default defineConfig({
               { text: '文件系统', link: '/OS/Linux/File_System.md' },
               { text: '用户与权限', link: '/OS/Linux/User_Group_Permission.md' },
               { text: '进程管理', link: '/OS/Linux/Process_Management.md' },
+              { text: '磁盘管理', link: '/OS/Linux/Disk_Management.md' },
               { text: '网络配置', link: '/OS/Linux/Network_Configuration.md' },
               { text: '脚本编程', link: '/OS/Linux/Shell_Scripting.md' },
               { text: '服务管理', link: '/OS/Linux/Systemd_Service.md' },
