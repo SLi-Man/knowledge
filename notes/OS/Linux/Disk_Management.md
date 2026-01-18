@@ -137,6 +137,64 @@ UUID=1d0c589a-20cc-44a6-bd28-4f935a13819f /              ext4  errors=remount-ro
 /dev/vda1: UUID="1d0c589a-20cc-44a6-bd28-4f935a13819f" BLOCK_SIZE="4096" TYPE="ext4" PARTUUID="b1444d03-01"
 ```
 
+## Swap分区
+
+::: info
+
+Swap 大小通常为物理内存的1～1.5倍，最多8G即可。
+
+:::
+
+查看Swap分区：`free -h`：
+
+```bash
+> free -h                                            
+              total        used        free      shared  buff/cache   available
+Mem:           2.0G        110M        1.7G        8.5M        197M        1.7G
+Swap:          2.0G          0B        2.0G
+```
+
+创建Swap：
+
+```bash
+# 第一步：生成一个2G大小的文件
+dd if=/dev/zero of=/tmp/2g bs=1M count=2000
+
+# 第二步：格式化为Swap分区
+mkswap /tmp/2g
+
+# 第三步：激活Swap空间
+swapon /tmp/2g
+
+# 查看是否成功
+free -h
+# 查看Swap组成
+swapon -s
+```
+
+卸载Swap：
+
+```
+swapoff /tmp/2g
+```
+
+开机自动挂载：
+
+```bash
+# /etc/fstab 增加一行
+/tmp/2g swap                    swap    defaults        0 0
+```
+
+
+
+
+
+
+
+
+
+---
+
 ## 参考引用
 
 - [完全图解RAID存储技术：RAID 0、1、5、6、10、50、60](https://cloud.tencent.com/developer/article/2304179)
