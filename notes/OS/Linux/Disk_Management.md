@@ -75,6 +75,40 @@ fdisk /dev/sdb
 
 ### 针对GPT分区 - parted
 
+::: warning
+
+parted 执行的操作会立即生效。
+
+parted 也支持非交互式输入。
+
+:::
+
+**常用操作：**
+
+- help：帮助信息
+- mklabel：制作新的标签
+- mkpart：创建分区
+- print：打印分区表
+- rm $NUMBER：删除分区
+
+mkpart 支持交互式和非交互式创建分区：
+
+```bash 
+# 交互式
+(parted) mkpart
+Partition name?  []? primary
+File system type?  [ext2]? xfs                                            
+Start? 0
+End? 200M
+Warning: The resulting partition is not properly aligned for best performance.
+Ignore/Cancel? I 
+
+# 非交互式
+mkpart primary xfs 200M 400M
+
+# 删除第2个分区
+rm 2
+```
 
 ## RAID
 | RAID级别 | 最小磁盘数 | 容错能力 | 磁盘空间开销 | 读取速度 | 写入速度 | 硬件成本 |
@@ -89,6 +123,7 @@ fdisk /dev/sdb
 
 
 
+<<<<<<< HEAD
 ## 磁盘分区
 
 ### MBR + DPT
@@ -102,3 +137,29 @@ fdisk /dev/sdb
 ## 参考引用
 
 - [完全图解RAID存储技术：RAID 0、1、5、6、10、50、60](https://cloud.tencent.com/developer/article/2304179)
+=======
+
+## 添加磁盘步骤
+
+1. 插入磁盘
+2. 分区：使用分区工具对磁盘进行初始化分区（可选）
+3. 格式化：使用mkfs对分区进行格式化
+4. 临时挂载：`mount /dev/sdb1 /mnt`
+5. 开机自动挂载：配置文件 `/etc/fstab`
+
+开机自动挂载文件：`/etc/fstab`
+
+```bash
+UUID=1d0c589a-20cc-44a6-bd28-4f935a13819f /              ext4  errors=remount-ro     0  1
+/dev/sr0                                  /media/cdrom0  udf,iso9660 user,noauto     0  0
+/www/swap                                 swap           swap        defaults        0 0
+```
+
+查看UUID命令：`blkid`
+
+```bash
+/dev/sr0: BLOCK_SIZE="2048" UUID="2025-09-20-18-33-59-00" LABEL="config-2" TYPE="iso9660"
+/dev/vda1: UUID="1d0c589a-20cc-44a6-bd28-4f935a13819f" BLOCK_SIZE="4096" TYPE="ext4" PARTUUID="b1444d03-01"
+```
+
+>>>>>>> 2239660 (docs: disk manage tool)
