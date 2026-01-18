@@ -26,18 +26,22 @@
 - 柱面（Cylinder）
 - 单元块（Units）
 
-
-
 ## RAID
 
-
+| RAID级别 | 最小磁盘数 | 容错能力 | 磁盘空间开销 | 读取速度 | 写入速度 | 硬件成本 |
+| :------- | :--------- | :------- | :----------- | :------- | :------- | :------- |
+| RAID 0   | 2          | 无       | 0%           | 高       | 高       | 低       |
+| RAID 1   | 2          | 单个磁盘 | 50%          | 高       | 低       | 中       |
+| RAID 5   | 3          | 单个磁盘 | 1 / N        | 中       | 低       | 中       |
+| RAID 6   | 4          | 两个磁盘 | 2 / N        | 中       | 低       | 高       |
+| RAID 10  | 4          | 多个磁盘 | 50%          | 高       | 中       | 高       |
+| RAID 50  | 6          | 单个磁盘 | 1 / N        | 高       | 中       | 高       |
+| RAID 60  | 8          | 多个磁盘 | 50%          | 高       | 中       | 高       |
 
 ## 分区格式
 
 - **MBR 格式** - 最大支持4个主分区，包含扩展分区、逻辑分区的概念
 - **GPT 格式** - 最大支持128个主分区
-
-
 
 ## 分区工具
 
@@ -93,15 +97,15 @@ parted 也支持非交互式输入。
 
 mkpart 支持交互式和非交互式创建分区：
 
-```bash 
+```bash
 # 交互式
 (parted) mkpart
 Partition name?  []? primary
-File system type?  [ext2]? xfs                                            
+File system type?  [ext2]? xfs
 Start? 0
 End? 200M
 Warning: The resulting partition is not properly aligned for best performance.
-Ignore/Cancel? I 
+Ignore/Cancel? I
 
 # 非交互式
 mkpart primary xfs 200M 400M
@@ -109,35 +113,6 @@ mkpart primary xfs 200M 400M
 # 删除第2个分区
 rm 2
 ```
-
-## RAID
-| RAID级别 | 最小磁盘数 | 容错能力 | 磁盘空间开销 | 读取速度 | 写入速度 | 硬件成本 |
-| :------- | :--------- | :------- | :----------- | :------- | :------- | :------- |
-| RAID 0   | 2          | 无       | 0%           | 高       | 高       | 低       |
-| RAID 1   | 2          | 单个磁盘 | 50%          | 高       | 低       | 中       |
-| RAID 5   | 3          | 单个磁盘 | 1 / N        | 中       | 低       | 中       |
-| RAID 6   | 4          | 两个磁盘 | 2 / N        | 中       | 低       | 高       |
-| RAID 10  | 4          | 多个磁盘 | 50%          | 高       | 中       | 高       |
-| RAID 50  | 6          | 单个磁盘 | 1 / N        | 高       | 中       | 高       |
-| RAID 60  | 8          | 多个磁盘 | 50%          | 高       | 中       | 高       |
-
-
-
-<<<<<<< HEAD
-## 磁盘分区
-
-### MBR + DPT
-
-最多支持4个主分区
-
-
-
-
-
-## 参考引用
-
-- [完全图解RAID存储技术：RAID 0、1、5、6、10、50、60](https://cloud.tencent.com/developer/article/2304179)
-=======
 
 ## 添加磁盘步骤
 
@@ -162,4 +137,6 @@ UUID=1d0c589a-20cc-44a6-bd28-4f935a13819f /              ext4  errors=remount-ro
 /dev/vda1: UUID="1d0c589a-20cc-44a6-bd28-4f935a13819f" BLOCK_SIZE="4096" TYPE="ext4" PARTUUID="b1444d03-01"
 ```
 
->>>>>>> 2239660 (docs: disk manage tool)
+## 参考引用
+
+- [完全图解RAID存储技术：RAID 0、1、5、6、10、50、60](https://cloud.tencent.com/developer/article/2304179)
