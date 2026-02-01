@@ -56,7 +56,6 @@ export default defineConfig({
               { text: '脚本编程', link: '/OS/Linux/Shell_Scripting.md' },
               { text: '服务管理', link: '/OS/Linux/Systemd_Service.md' },
               { text: '日志管理', link: '/OS/Linux/Log_Management.md' },
-	      { text: '磁盘管理', link: '/OS/Linux/Disk_Management.md' },
               { text: '系统优化', link: '/OS/Linux/System_Optimization_Security.md' },
               { text: '性能监控', link: '/OS/Linux/Performance_Monitoring.md' },
               { text: '面试题', link: '/OS/Linux/Interview_Questions.md' }
