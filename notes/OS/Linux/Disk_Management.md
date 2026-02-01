@@ -187,7 +187,37 @@ swapoff /tmp/2g
 
 
 
+## 相关案例
 
+### 查找大文件
+
+- 方法一：
+
+    ```bash
+    find / -type f -size 100M
+    ```
+
+- 方法二：
+
+    ```bash
+    du -h / | awk '$1 ~ /G$/'
+    ```
+
+### 查找大量小文件
+
+```bash
+find / -type d -size +1M
+```
+
+### 因进程占用导致的文件无法释放
+
+```bash
+# 通过lsof看进程占用的文件
+lsof | grep 1.log
+
+# 如果是服务占用，需要重载服务
+systemctl reload service
+```
 
 
 
