@@ -73,3 +73,17 @@ export PATH=${PATH}:/usr/local/mysql/bin
 ```mysql
 ALTER USER 'root'@'localhost' IDENTIFIED BY '新密码';
 ```
+
+## OpenCore 参数设置
+### Booter -> Quirks -> ResizeAppleGpuBars 
+> OpenCore 0.7.5 正式版新增了两个 Quirks，分别是 ResizeAppleGpuBars 和 ResizeGpuBars，前者位于 Booter → Quirks，后者位于 UEFI → Quirks，下面讲讲这两个选项的作用和区别。
+简单来说，ResizeAppleGpuBars 只针对 macOS 生效，而 ResizeGpuBars 则影响所有通过 OpenCore 引导的操作系统，而较新版本的 Windows 和 Linux 自己可以处理 ResizebleBars 特性，所以我们的思路就是调整前者，关闭后者。
+OpenCore 更新到 0.7.6 时，明确限定了值只能是 0 或 -1
+对于 RX6000 系显卡，ResizeAppleGpuBars 建议值如下：
+-1：关闭
+0：1MB（保险值）
+8：256MB（传统值）
+10：1GB（macOS 支持最大值）
+如何选择？如果你有 RX6000 系显卡，可优先尝试 10，这么设置的目的是尝试使用 macOS 最大值看看能不能一定程度提升性能；如果遇到休眠问题（表现类似睡了即醒），则修改为 8；如果问题依旧，可改成 0 ，这也是 OpenCore 团队的推荐值，即 1MB，设置为 1MB 的意义在于保留 BIOS 中对应选项开启，但不影响 macOS 启动和运行；如果运行还有问题，改为 -1 关闭该功能。
+ResizeGpuBars 直接设置为 -1 即可。没有 RX6000 系显卡的同学，建议两个都设置为 -1。
+来自：flytutu https://bbs.pcbeta.com/viewthread-1997130-1-1.html
