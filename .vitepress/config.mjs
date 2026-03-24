@@ -3,13 +3,14 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   srcDir: "notes",
-  title: "SLiMan's Note",
-  description: "A VitePress Site",
+  title: "SLiMan's Notes",
+  description: "技术笔记与学习记录",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Note', link: '/markdown-examples' }
+      { text: '首页', link: '/' },
+      { text: '笔记', link: '/markdown-examples' },
+      { text: '关于', link: '/about' }
     ],
 
     sidebar: [
@@ -76,7 +77,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/SLi-Man' }
     ]
   },
 })
