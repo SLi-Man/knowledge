@@ -106,7 +106,7 @@ brew install --cask ghostty
 | `Cmd + Ctrl + 方向键` | 调整分屏大小           |
 
 配置文件：https://github.com/BruceLanLan/bruceblue-ghostty-config/blob/main/config 
-
+::: details config
 ```bash
 # 窗口左右内边距（单位：像素）
 window-padding-x = 15
@@ -149,6 +149,8 @@ background-blur = 250
 keybind = opt+t=toggle_window_float_on_top
 
 ```
+:::
+
 
 ### 终端字体 - Maple Mono NF CN
 
