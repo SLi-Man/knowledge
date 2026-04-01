@@ -9,10 +9,10 @@ hero:
   actions:
     - theme: brand
       text: 开始浏览
-      link: /notes/
+      link: /Device_Tweaking/fnOS.html
     - theme: alt
       text: Markdown 示例
-      link: /notes/markdown-examples
+      link: /markdown-examples
 
 features:
   - icon: 📝
