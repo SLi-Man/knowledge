@@ -118,3 +118,7 @@ function mv($file_path, $des_name) {
 }
 ```
 :::
+
+
+相关链接：
+- [Windows Terminal 配置 - TaurusXin](https://www.taurusxin.com/windows-terminal/)
