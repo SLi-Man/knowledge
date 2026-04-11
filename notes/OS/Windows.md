@@ -1,11 +1,10 @@
 # Windows 常用设置
 
-## 命令行配置
-### 终端 - Windows Terminal
+## 终端 - Windows Terminal
 **Windows Store 安装**
 
 
-### 包管理器 - Winget
+## 包管理器 - Winget
 **Windows Store 安装**
 
 **Winget 替换源**
@@ -14,13 +13,13 @@ winget source remove winget
 winget source add winget https://mirrors.ustc.edu.cn/winget-source
 ```
 
-### Shell - PowerShell 7
+## Shell - PowerShell 7
 **PowerShell 7 安装**
 ```powershell
 winget install --id Microsoft.PowerShell --source winget
 ```
 
-### 美化
+## 美化
 **Oh My Posh**
 ```powershell
 winget install JanDeDobbeleer.OhMyPosh --source winget
@@ -59,19 +58,9 @@ oh-my-posh init pwsh --config ~/tokyonight_storm.omp.json | Invoke-Expression
 Oh My Posh 主题列表：
 https://ohmyposh.dev/docs/themes
 
-**安装 Winfetch**
-```powershell
-Install-Script winfetch
-```
-
-**Git-Posh**
-```powershell
-Install-Module -Name posh-git -Scope CurrentUser
-```
 
 
-
-### 常用包安装
+## 常用包安装
 ```powershell
 # winfetch
 Install-Script winfetch
@@ -85,7 +74,7 @@ winget install eza-community.eza
 ```
 
 
-### 配置文件
+## 配置文件
 ::: details Microsoft.PowerShell_profile.ps1
 ```powershell
 oh-my-posh init pwsh --config ~/tokyonight_storm.omp.json | Invoke-Expression
@@ -95,6 +84,9 @@ Import-Module PSReadLine
 
 # posh-git
 Import-Module posh-git
+
+# 移除 ls alias
+Remove-Item Alias:ls -Force
 
 # 设置预测文本来源为历史记录
 Set-PSReadLineOption -PredictionSource History
