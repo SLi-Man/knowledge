@@ -62,7 +62,8 @@ export default defineConfig({
               { text: '面试题', link: '/OS/Linux/Interview_Questions.md' }
           ]},
           { text: 'MacOS', link: '/OS/MacOS.md' },
-          { text: 'Ubuntu', link: '/OS/Ubuntu.md' }
+          { text: 'Ubuntu', link: '/OS/Ubuntu.md' },
+          { text: 'Windows', link: '/OS/Windows.md' },
         ]
       },
       {

@@ -70,6 +70,21 @@ Install-Module -Name posh-git -Scope CurrentUser
 ```
 
 
+
+### 常用包安装
+```powershell
+# winfetch
+Install-Script winfetch
+
+# get-posh
+Install-Module -Name posh-git -Scope CurrentUser
+
+# eza 现代版ls
+winget install eza-community.eza
+
+```
+
+
 ### 配置文件
 ::: details Microsoft.PowerShell_profile.ps1
 ```powershell
@@ -96,11 +111,6 @@ Set-PSReadlineKeyHandler -Key "Ctrl+d" -Function ViExit
 # 设置 Ctrl+z 为撤销
 Set-PSReadLineKeyHandler -Key "Ctrl+z" -Function Undo
 
-# 使用 ll 查看目录
-function ll {
-    Get-ChildItem
-}
-
 # 设置向上键为后向搜索历史记录
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 
@@ -109,13 +119,24 @@ Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 
 # rm -rf alias
 function rmrf ($dir_path){
-  Remove-Item -Recurse -Force $dir_path
+    Remove-Item -Recurse -Force $dir_path
 }
 
 # mv alias
 function mv($file_path, $des_name) {
-  Move-Item -Path $file_path -Destination $des_name
+    Move-Item -Path $file_path -Destination $des_name
 }
+
+# ls alias
+function ls {
+    eza --group-directories-first --icons --color=auto @args
+}
+
+# ll alias
+function ll {
+    eza -l --icons --group-directories-first @args
+}
+
 ```
 :::
 
