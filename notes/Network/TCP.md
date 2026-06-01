@@ -62,7 +62,7 @@ SYN Flood的实现原理即攻击者发送大量的SYN请求给服务器，但�
 
 :::
 
-::: detail Q：SYN Cookie是如何解决SYN Flood的？
+::: details Q：SYN Cookie是如何解决SYN Flood的？
 
 SYN Cookie 通常是在半连接队列即将满的情况下启用。SYN Cookie 是收到SYN请求后，不再给SYN分配任何资源，而是将状态信息（客户端信息、服务端信息、时间戳、哈希签名、 MSS等参数）编码后塞入seq序列号中发送给客户端，等客户端回复服务器后，通过客户端回复的seq+1，推算出刚才的cookie，完成校验后才会分配资源+建立连接。
 
