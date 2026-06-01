@@ -27,8 +27,9 @@ export default defineConfig({
         collapsed: false,
         items: [
           { text: 'DNS', link: '/Network/DNS.md' },
-          { text: 'DNSSEC', link: '/Network/DNSSEC.md' },
+          { text: 'TCP', link: '/Network/TCP.md' },
           { text: '公钥密码学', link: '/Network/PKC.md' }
+          
         ]
       },
       {
