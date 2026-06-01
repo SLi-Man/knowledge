@@ -1,8 +1,7 @@
 import { defineConfig } from 'vitepress'
-import Mermaid from 'vitepress-plugin-mermaid'
+import { withMermaid } from 'vitepress-plugin-mermaid'
 
-// https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default withMermaid({
   srcDir: "notes",
   title: "SLiMan's Notes",
   description: "技术笔记与学习记录",
@@ -10,11 +9,12 @@ export default defineConfig({
     theme: {
       light: 'github-light',
       dark: 'github-dark'
-    },
-    config: (md) => {
-      md.use(Mermaid, {
-        theme: 'default'
-      })
+    }
+  },
+  mermaid: {
+    theme: {
+      light: 'default',
+      dark: 'dark'
     }
   },
   themeConfig: {
