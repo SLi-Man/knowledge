@@ -1,6 +1,6 @@
 # TCP 传输控制协议
 
-## 三次握手机制
+## 三次握手
 ```mermaid
 sequenceDiagram
     participant Client as 客户端
@@ -9,13 +9,13 @@ sequenceDiagram
     Note over Client: CLOSED
     Note over Server: LISTEN
 
-    Client->>Server: SYN=1, Seq=x
-    Note over Client: SYN-SENT
+    Client->>Server: SYN=1(seq=x)
+    Note over Client: SYN_SENT
 
-    Server->>Client: SYN=1, ACK=1<br/>Seq=y, Ack=x+1
-    Note over Server: SYN-RECEIVED
+    Server->>Client: SYN=1, ACK=1<br/>(seq=y, ack=x+1)
+    Note over Server: SYN_RECEIVED
 
-    Client->>Server: ACK=1<br/>Seq=x+1, Ack=y+1
+    Client->>Server: ACK=1<br/>(seq=x+1, ack=y+1)
     Note over Client: ESTABLISHED
     Note over Server: ESTABLISHED
 
@@ -70,5 +70,39 @@ SYN Cookie 通常是在半连接队列即将满的情况下启用。SYN Cookie �
 
 - 服务器只能编码八种 MSS 数值，因为只有 3 位二进制空间可用
 - 服务器必须拒绝所有的TCP选用项，例如大型窗口和时间戳，因为服务器会在信息被用其他方式存储时丢弃 SYN 队列条目
+
+:::
+
+
+
+## 四次挥手
+
+```mermaid
+sequenceDiagram
+    participant Client as 客户端
+    participant Server as 服务器
+    
+    Note over Client,Server: ESTABLISHED
+    
+    Client->>Server: FIN=1(seq=u)
+    Note over Client: FIN_WAIT_1
+    
+    Server->>Client: ACK=1<br/>(ack=u+1, seq=v)
+    Note over Server: CLOSE_WAIT
+    Note over Client: FIN_WAIT_2
+    
+    Server->>Client: FIN=1<br/>(ack=v+1, seq=w)
+    Note over Server: LAST_ACK
+    
+    Client->>Server: ACK=1<br/>(ack=w+1, seq=u+1)
+    Note over Client: TIME_WAIT
+    Note over Server: CLOSED
+    Note over Client: 2*MSL后CLOSED
+    
+```
+
+::: details Q：为什么客户端要等待2*MSL后才进入CLOSED状态呢？
+
+我们需要假象网络是不可靠的，客户端最后发送的ACK报文对方未必能收到，服务器因为超时未接收到ACK报文，而重发FIN报文，所以TIME_WAIT的状态就是用来重发可能丢失的ACK报文。
 
 :::

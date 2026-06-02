@@ -795,6 +795,27 @@ lp                                         **Never logged in**
 
 ---
 
+## 六、网络管理
+
+### netstat - 网络状态
+
+```bash
+netstat [-acCeFghilMnNoprstuvVwx][-A<网络类型>][--ip]
+```
+
+- `-a`：--all 显示所有连接中的socket
+- `-t`：--tcp 显示TCP的连接状况
+- `-u`：--udp 显示UDP的连接状况
+- `-n`：--numeric 不通过DNS，直接使用IP地址
+- `-l`：--listening 显示监听中的socket
+- `-p`：--programs 显示正在使用socket的程序识别码和程序名称
+
+
+
+
+
+---
+
 ## 七、其他实用命令
 
 ### which - 命令路径查找
