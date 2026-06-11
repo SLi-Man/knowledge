@@ -39,9 +39,7 @@ export default withMermaid({
         collapsed: false,
         items: [
           { text: 'DNS', link: '/Network/DNS.md' },
-          { text: 'TCP', link: '/Network/TCP.md' },
-          { text: '公钥密码学', link: '/Network/PKC.md' }
-          
+          { text: 'TCP/IP', link: '/Network/TCP_IP.md' }
         ]
       },
       {
@@ -53,30 +51,101 @@ export default withMermaid({
             collapsed: true,
             items: [
               { text: '实用工具', collapsed: true, items: [
-                { text: '打包与压缩', link: '/OS/Linux/Utilities/Archive_Compression.md' },
-                { text: '正则表达式', link: '/OS/Linux/Utilities/Regex.md' },
-                { text: '定时任务', link: '/OS/Linux/Utilities/crontab.md' },
-                { text: 'Vim', link: '/OS/Linux/Utilities/Vim.md' },
-                { text: 'Git', link: '/OS/Linux/Utilities/Git.md' },
-                { text: 'ExifTool', link: '/OS/Linux/Utilities/ExifTool.md' },
+                { text: '打包与压缩', link: '/System/Linux/Utilities/Archive_Compression.md' },
+                { text: '正则表达式', link: '/System/Linux/Utilities/Regex.md' },
+                { text: '定时任务', link: '/System/Linux/Utilities/crontab.md' },
+                { text: 'Vim', link: '/System/Linux/Utilities/Vim.md' },
+                { text: 'ExifTool', link: '/System/Linux/Utilities/ExifTool.md' },
               ]},
-              { text: '基本命令', link: '/OS/Linux/Basic_Commands.md' },
-              { text: '包管理', link: '/OS/Linux/Package_Management.md' },
-              { text: '文件系统', link: '/OS/Linux/File_System.md' },
-              { text: '用户与权限', link: '/OS/Linux/User_Group_Permission.md' },
-              { text: '进程管理', link: '/OS/Linux/Process_Management.md' },
-              { text: '磁盘管理', link: '/OS/Linux/Disk_Management.md' },
-              { text: '网络配置', link: '/OS/Linux/Network_Configuration.md' },
-              { text: '脚本编程', link: '/OS/Linux/Shell_Scripting.md' },
-              { text: '服务管理', link: '/OS/Linux/Systemd_Service.md' },
-              { text: '日志管理', link: '/OS/Linux/Log_Management.md' },
-              { text: '系统优化', link: '/OS/Linux/System_Optimization_Security.md' },
-              { text: '性能监控', link: '/OS/Linux/Performance_Monitoring.md' },
-              { text: '面试题', link: '/OS/Linux/Interview_Questions.md' }
+              { text: '基本命令', link: '/System/Linux/Basic_Commands.md' },
+              { text: '包管理', link: '/System/Linux/Package_Management.md' },
+              { text: '文件系统', link: '/System/Linux/File_System.md' },
+              { text: '用户与权限', link: '/System/Linux/User_Group_Permission.md' },
+              { text: '进程管理', link: '/System/Linux/Process_Management.md' },
+              { text: '磁盘管理', link: '/System/Linux/Disk_Management.md' },
+              { text: '网络配置', link: '/System/Linux/Network_Configuration.md' },
+              { text: '脚本编程', link: '/System/Linux/Shell_Scripting.md' },
+              { text: '服务管理', link: '/System/Linux/Systemd_Service.md' },
+              { text: '日志管理', link: '/System/Linux/Log_Management.md' },
+              { text: '系统优化', link: '/System/Linux/System_Optimization_Security.md' },
+              { text: '性能监控', link: '/System/Linux/Performance_Monitoring.md' },
+              { text: '面试题', link: '/System/Linux/Interview_Questions.md' }
           ]},
-          { text: 'MacOS', link: '/OS/MacOS.md' },
-          { text: 'Ubuntu', link: '/OS/Ubuntu.md' },
-          { text: 'Windows', link: '/OS/Windows.md' },
+          { text: 'MacOS', link: '/System/MacOS.md' },
+          { text: 'Ubuntu', link: '/System/Ubuntu.md' },
+          { text: 'Windows', link: '/System/Windows.md' },
+        ]
+      },
+      {
+        text: '基础设施 / Infrastructure',
+        collapsed: true,
+        items: [
+          { text: 'Rsync', link: '/Network/Rsync.md' }
+          
+        ]
+      },
+      {
+        text: '自动化运维 / Automation',
+        collapsed: true,
+        items: [
+          { text: 'Git', link: '/Automation/Git.md' }
+          
+        ]
+      },
+      {
+        text: '容器与云原生 / Cloud Native',
+        collapsed: true,
+        items: [
+          
+          
+        ]
+      },
+      {
+        text: '数据库 / Database',
+        collapsed: true,
+        items: [
+          
+          
+        ]
+      },
+      {
+        text: '消息队列 / MQ',
+        collapsed: true,
+        items: [
+          
+          
+        ]
+      },
+      {
+        text: '监控与可观测性 / Observability',
+        collapsed: true,
+        items: [
+          
+          
+        ]
+      },
+      {
+        text: '存储 / Storage',
+        collapsed: true,
+        items: [
+          
+          
+        ]
+      },
+      {
+        text: '安全 / Security',
+        collapsed: true,
+        items: [
+          { text: '公钥密码学', link: '/Security/PKC.md' }
+          
+        ]
+      },
+      {
+        text: '项目 / Projects',
+        collapsed: true,
+        items: [
+          
+          
         ]
       },
       {
