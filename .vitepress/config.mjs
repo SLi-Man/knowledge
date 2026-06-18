@@ -80,7 +80,7 @@ export default withMermaid({
         text: '基础设施 / Infrastructure',
         collapsed: true,
         items: [
-          { text: 'Rsync', link: '/Network/Rsync.md' }
+          { text: 'Rsync', link: '/Infrastructure/Rsync.md' }
           
         ]
       },
