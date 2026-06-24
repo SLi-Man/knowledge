@@ -128,7 +128,7 @@ export default withMermaid({
         text: '存储 / Storage',
         collapsed: true,
         items: [
-          
+          { text: 'NFS', link: '/Storage/NFS.md' }
           
         ]
       },

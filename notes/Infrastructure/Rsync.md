@@ -125,7 +125,7 @@ rsync -avz abc rsync_backup@10.0.0.41::backup
 
 ```bash
 echo 123456 > /etc/rsync.pass
-chmod 600 /etc/rsync.pass
+chmod 600 /etc/rsync.pass  # 密码文件必须为600权限
 rsync -avz abc rsync_backup@10.0.0.41::backup --password-file=/etc/rsync.pass
 ```
 
@@ -202,7 +202,22 @@ md5sum -c /backup/*_*_*/*.log > /backup/$Date.log
    find /backup -mtime +180|xargs rm -rf
    ```
 
-   
+## Sersync - 实时同步
+
+Github: [wsgzao/sersync: rsync+inotify-tools](https://github.com/wsgzao/sersync)
+
+安装依赖：
+
+   ```bash
+   yum install -y inotify-tools rsync
+   ```
+
+编辑配置文件：`confxml.xml` 后启动：
+
+   ```bash
+   ./serrsync2 -dro confxml.xml
+   # d 守护进程 r 监控前推送 o 指定配置文件
+   ```
 
    
 
