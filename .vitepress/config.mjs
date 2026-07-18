@@ -69,18 +69,22 @@ export default withMermaid({
               { text: '日志管理', link: '/System/Linux/Log_Management.md' },
               { text: '系统优化', link: '/System/Linux/System_Optimization_Security.md' },
               { text: '性能监控', link: '/System/Linux/Performance_Monitoring.md' },
+              { text: '远程管理', link: '/System/Linux/Remote_Access.md' },
               { text: '面试题', link: '/System/Linux/Interview_Questions.md' }
           ]},
           { text: 'MacOS', link: '/System/MacOS.md' },
-          { text: 'Ubuntu', link: '/System/Ubuntu.md' },
           { text: 'Windows', link: '/System/Windows.md' },
+          { text: 'Ubuntu', link: '/System/Ubuntu.md' },
+          { text: 'CentOS', link: '/System/CentOS.md' },
+          
         ]
       },
       {
         text: '基础设施 / Infrastructure',
         collapsed: true,
         items: [
-          { text: 'Rsync', link: '/Infrastructure/Rsync.md' }
+          { text: 'Rsync', link: '/Infrastructure/Rsync.md' },
+          { text: 'Nginx', link: '/Infrastructure/Nginx.md' }
           
         ]
       },
@@ -146,6 +150,15 @@ export default withMermaid({
         items: [
           
           
+        ]
+      },
+      {
+        text: '摄影 / Shoot',
+        collapsed: false,
+        items: [
+          { text: '摄影基础', link: '/Shoot/basicas.md' },
+          { text: '器材选购', link: '/Shoot/purchase.md' },
+          { text: '使用相机', link: '/Shoot/useCamera.md' }
         ]
       },
       {
