@@ -35,6 +35,13 @@ export default withMermaid({
         ]
       },
       {
+        text: '硬件选购 / Hardware',
+        collapsed: true,
+        items: [
+          { text: '硬盘选购', link: '/Hardware/Hard_Drive_Selection.md' }
+        ]
+      },
+      {
         text: '网络知识 / Network',
         collapsed: false,
         items: [
@@ -70,6 +77,7 @@ export default withMermaid({
               { text: '系统优化', link: '/System/Linux/System_Optimization_Security.md' },
               { text: '性能监控', link: '/System/Linux/Performance_Monitoring.md' },
               { text: '远程管理', link: '/System/Linux/Remote_Access.md' },
+              { text: '内核模块', link: '/System/Linux/Kernel_Modules.md' },
               { text: '面试题', link: '/System/Linux/Interview_Questions.md' }
           ]},
           { text: 'MacOS', link: '/System/MacOS.md' },
@@ -148,8 +156,7 @@ export default withMermaid({
         text: '项目 / Projects',
         collapsed: true,
         items: [
-          
-          
+          { text: 'LNMP', link: '/Projects/LNMP.md' }
         ]
       },
       {
@@ -161,15 +168,6 @@ export default withMermaid({
           { text: '使用相机', link: '/Shoot/useCamera.md' }
         ]
       },
-      {
-        text: '摄影 / Shoot',
-        collapsed: false,
-        items: [
-          { text: '摄影基础', link: '/Shoot/basicas.md' },
-          { text: '器材选购', link: '/Shoot/purchase.md' },
-          { text: '使用相机', link: '/Shoot/useCamera.md' }
-        ]
-      }
     ],
     outline: {
       level: [2, 3]
