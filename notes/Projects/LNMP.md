@@ -108,3 +108,12 @@ LNMP下，数据路径 `user -> http -> nginx -> fastcgi -> php-fpm -> php -> my
 
 搭建网站略~
 
+## 数据库拆分
+
+1. web01上备份数据库：
+
+   ```bash
+   mysqldump -root -p'sliman' -A
+   ```
+
+   

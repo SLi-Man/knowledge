@@ -19,6 +19,9 @@ export default withMermaid({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    search: {
+      provider: 'local'
+    },
     nav: [
       { text: '首页', link: '/' },
       { text: '笔记', link: '/markdown-examples' },
