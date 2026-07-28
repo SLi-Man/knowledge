@@ -108,12 +108,150 @@ LNMP下，数据路径 `user -> http -> nginx -> fastcgi -> php-fpm -> php -> my
 
 搭建网站略~
 
-## 数据库拆分
+## 数据库扩展
 
-1. web01上备份数据库：
+1. 准备单独的数据库服务器 db01
 
    ```bash
-   mysqldump -root -p'sliman' -A
+   # 部署Mariadb服务
+   # 启动Mariadb，开机启动
+   ```
+
+2. 将web01上的数据库导出
+
+   ```bash
+   mysqldump -uroot -p'passwd' -A > all.sql
+   ```
+
+3. 将数据库文件拷贝到db01
+
+   ```bash
+   scp all.sql root@10.0.0.51:/root
+   ```
+
+4. 导入数据库文件
+
+   ```bash
+   mysql -uroot < all.sql   # 刚安装完没有密码
+   systemctl restart mariadb  # 重启数据库后密码生效
+   ```
+
+5. 授权远程数据库连接
+
+   ```mysql
+   grant all on *.* to jingway@'%' identified by 'jingway.com';
+   ```
+
+6. 修改web01服务指向db01
+
+   ```bash
+   # web01 停止并禁止开机运行
+   systemctl stop mariadb
+   systemctl disable mariadb
+   
+   # 修改网站数据库配置文件
+   ```
+
+## Web 服务扩展
+
+1. 准备一台web02 10.0.0.8
+
+2. 创建虚拟用户www
+
+   ```bash
+   groupadd -g666 www
+   useradd -u666 -g666 -M -s /sbin/nologin www
+   ```
+
+3. 部署nginx
+
+4. 部署php
+
+5. nginx无差别同步
+
+   ```bash
+   rsync -avz --delete 172.16.1.7:/etc/nginx/ /etc/nginx
+   ```
+
+6. php无差别同步
+
+   ```bash
+   rsync -avz --delete 172.16.1.7:/etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf
+   ```
+
+7. web01代码同步到web02
+
+   ```bash
+   # web01
+   tar czvf code.tar.gz /code
+   scp code.tar.gz 172.16.1.8:/
+   
+   # web02
+   tar xf code.tar.gz
+   ```
+
+8. 启动服务
+
+   ```bash
+   systemctl start nginx php-fpm
+   systemctl enable nginx php-fpm
+   ```
+
+9. 测试服务
+
+## 存储扩展（NFS）
+
+**NFS Server:**
+
+1. 准备一台nfs 10.0.0.31
+
+2. 安装nfs服务
+
+3. 配置nfs服务
+
+   ```bash
+   # /etc/exports
+   /code/wp 172.16.1.0/24(rw,sync,all_squash,anonuid=666,anongid=666)
+   ```
+
+   ```bash
+   groupadd -g666 www
+   useradd -u666 -g666 -M -s /sbin/nologin www
+   mkdir -p /code/wp
+   chown www.www /code/wp
+   ```
+
+4. 启动nfs服务
+
+   ```bash
+   systemctl start nfs
+   systemctl enable nfs
+   ```
+
+5. 检查nfs服务
+
+   ```bash
+   cat /var/lib/nfs/etab
+   ```
+
+**NFS Client:**
+
+1. 所有客户端安装nfs
+
+   ```bash
+   yum -y install nfs-utils
+   ```
+
+2. 将web服务器上的图片推送到nfs服务器
+
+   ```bash
+   scp -r /code/wordpress/wp-content/uploads/ 172.16.1.31:/code/wordpress/
+   ```
+
+3. 挂载nfs
+
+   ```bash
+   mount -t nfs 172.16.1.31:/code/wordpress/uploads /code/wordpress/wp-content/uploads/
    ```
 
    
