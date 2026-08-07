@@ -108,7 +108,9 @@ LNMP下，数据路径 `user -> http -> nginx -> fastcgi -> php-fpm -> php -> my
 
 搭建网站略~
 
-## 数据库扩展
+## 架构拆分
+
+### 数据库扩展
 
 1. 准备单独的数据库服务器 db01
 
@@ -152,7 +154,7 @@ LNMP下，数据路径 `user -> http -> nginx -> fastcgi -> php-fpm -> php -> my
    # 修改网站数据库配置文件
    ```
 
-## Web 服务扩展
+### Web 服务扩展
 
 1. 准备一台web02 10.0.0.8
 
@@ -199,7 +201,7 @@ LNMP下，数据路径 `user -> http -> nginx -> fastcgi -> php-fpm -> php -> my
 
 9. 测试服务
 
-## 存储扩展（NFS）
+### 存储扩展（NFS）
 
 **NFS Server:**
 
@@ -253,5 +255,164 @@ LNMP下，数据路径 `user -> http -> nginx -> fastcgi -> php-fpm -> php -> my
    ```bash
    mount -t nfs 172.16.1.31:/code/wordpress/uploads /code/wordpress/wp-content/uploads/
    ```
+
+## 配置优化
+
+### 修改上传大小限制
+
+**Nginx:** 修改`/etc/nginx/nginx.conf`
+
+```nginx
+client_max_body_size 20m;
+```
+
+**PHP:** 修改`/etc/php.ini`
+
+```ini
+;POST数据最大尺寸
+post_max_size = 20M
+;允许上传文件的最大尺寸
+upload_max_filesize = 20M
+```
+
+## 负载均衡
+
+1. 反向代理服务器 lb01 10.0.0.5
+
+2. 部署Nginx
+
+3. 配置反向代理 
+
+   proxy_params:
+
+   ```nginx
+   proxy_set_header Host $http_host;
+   proxy_http_version 1.1;
+   proxy_set_header X-Real-IP $remote_addr;
+   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+   
+   proxy_connect_timeout 30;
+   proxy_send_timeout 60;
+   proxy_read_timeout 60;
+   
+   proxy_buffering on;
+   proxy_buffer_size 32k;
+   proxy_buffers 4 128k;
+   
+   proxy_next_upstream error timeout http_500 http_502 http_503 http_504;
+   ```
+
+   default.conf:
+   
+   ```nginx
+   upstream webs {
+       server 10.0.0.7;
+       server 10.0.0.8;
+   }
+   
+   server {
+       listen 80;
+       server_name wp.jingway.com;
+   
+       location / {
+           proxy_pass http://webs;
+           include proxy_params;
+       }
+   }
+   ```
+   
+
+## 会话保持
+
+### 部署Redis
+
+1. 安装
+
+   ```bash
+   # 配置在db01 172.16.1.51
+   yum install -y redis
+   ```
+
+2. 编辑配置文件：`/etc/redis.conf`
+
+   ```ini
+   bind 127.0.0.1
+   # 改为，配置允许通过172.16.1.51连接redis
+   bind 127.0.0.1 172.16.1.51
+   ```
+
+3. 启动
+
+   ```bash
+   systemctl start redis
+   systemctl enable redis
+   ```
+
+4. 检查端口
+
+   ```bash
+   netstat -tunlp | grep 6379
+   ```
+
+### 修改PHP会话配置
+
+1. web服务器上安装php-pecl-redis扩展
+
+   ```bash
+   yum install -y php-pecl-redis
+   ```
+
+2. 编辑web服务器配置文件`/etc/php.ini`
+
+   ```ini
+   session.save_handler = files
+   
+   ;session.save_path = "/tmp"
+   ```
+
+   改为：
+
+   ```ini
+   session.save_handler = redis
+   
+   session.save_path = "tcp://172.16.1.51:6379"
+   ```
+
+3. 注释掉php-fpm配置文件`/etc/php-fpm.d/www.conf`
+
+   ```ini
+   ;php_value[session.save_handler] = files
+   ;php_value[session.save_path]     = /var/lib/php/session
+   ```
+
+   
+
+
+
+## 动静分离
+
+1. [部署Tomcat](../Infrastructure/Tomcat.md#install)
+
+2. Nginx反向代理Tomcat
+
+   ```nginx
+   upstream tom {
+       server 172.16.1.8:8080;
+   }
+   server {
+       listen 80;
+       server_name tomcat.jingway.com;
+       
+       location / {
+           proxy_pass http://tom;
+       }
+       
+       location ~* \.(png|jpg|svg|mp4|mp3)$ {
+           root /code/images;
+       }
+   }
+   ```
+
+   
 
    

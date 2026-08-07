@@ -95,8 +95,9 @@ export default withMermaid({
         collapsed: true,
         items: [
           { text: 'Rsync', link: '/Infrastructure/Rsync.md' },
-          { text: 'Nginx', link: '/Infrastructure/Nginx.md' }
-          
+          { text: 'Nginx', link: '/Infrastructure/Nginx.md' },
+          { text: 'LVS', link: '/Infrastructure/LVS.md' },
+          { text: 'Tomcat', link: '/Infrastructure/Tomcat.md' }
         ]
       },
       {

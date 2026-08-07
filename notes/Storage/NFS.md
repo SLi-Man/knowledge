@@ -120,3 +120,8 @@ CentOS 7.x 中，对于没有依赖关系的服务之间的启动顺序是并行
 
 - `_netdev`: 表示网络设备，必须等待网络相关目标完成后再挂载
 - `x-systemd.automount`: 开机不立刻挂载，等待第一次访问目录时再进行挂载（针对NAS使用场景比较合适）
+
+```
+172.16.1.31:/code/wordpress/uploads /code/wordpress/wp-content/uploads nfs _netdev       0 0
+```
+
