@@ -97,14 +97,16 @@ export default withMermaid({
           { text: 'Rsync', link: '/Infrastructure/Rsync.md' },
           { text: 'Nginx', link: '/Infrastructure/Nginx.md' },
           { text: 'LVS', link: '/Infrastructure/LVS.md' },
-          { text: 'Tomcat', link: '/Infrastructure/Tomcat.md' }
+          { text: 'Tomcat', link: '/Infrastructure/Tomcat.md' },
+          { text: 'Keepalived', link: '/Infrastructure/Keepalived.md' }
         ]
       },
       {
         text: '自动化运维 / Automation',
         collapsed: true,
         items: [
-          { text: 'Git', link: '/Automation/Git.md' }
+          { text: 'Git', link: '/Automation/Git.md' },
+          { text: 'Ansible', link: '/Automation/Ansible.md' }
           
         ]
       },
@@ -160,7 +162,8 @@ export default withMermaid({
         text: '项目 / Projects',
         collapsed: true,
         items: [
-          { text: 'LNMP', link: '/Projects/LNMP.md' }
+          { text: 'LNMP', link: '/Projects/LNMP.md' },
+          { text: 'Ansible 自动化部署', link: '/Projects/Ansible_Roles.md' }
         ]
       },
       {

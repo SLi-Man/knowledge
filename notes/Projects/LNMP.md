@@ -387,8 +387,6 @@ upload_max_filesize = 20M
 
    
 
-
-
 ## 动静分离
 
 1. [部署Tomcat](../Infrastructure/Tomcat.md#install)
@@ -411,6 +409,37 @@ upload_max_filesize = 20M
            root /code/images;
        }
    }
+   ```
+
+   
+
+
+## HTTPS
+
+1. 在lb01上生成证书
+
+   ```bash
+   mkdir -p /etc/nginx/ssl_key
+   cd /etc/nginx/ssl_key
+   openssl genrsa -idea -out server.key 2048
+   # 生成自签证书，同时去掉私钥密码
+   openssl req -days 36500 -x509 -sha256 -nodes -newkey rsa:2048 -keyout server.key -out server.crt
+   ```
+
+2. 配置证书
+
+   ```nginx
+   server {
+       listen 443 ssl;
+       ssl_certificate ssl_key/server.crt;
+       ssl_certificate ssl_key/server.key;
+   }
+   ```
+
+3. 后端服务器需要让php支持https
+
+   ```nginx
+   fastcgi_param HTTPS on;
    ```
 
    

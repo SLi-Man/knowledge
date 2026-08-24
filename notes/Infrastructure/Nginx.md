@@ -242,7 +242,11 @@ client_max_body_size 1m;
 # 网站上传文件的大小限制，默认是1m
 ```
 
+### 内容替换
 
+```nginx
+sub_filter 'hello' 'goodbye';
+```
 
 ## location语法优先级{#location}
 
@@ -520,6 +524,25 @@ if ($remote_addr = "10.0.0.1"){
 }
 if ($ip = 0){
     rewrite ^(.*)$ /wh.html break;
+}
+```
+
+## HTTPS
+
+```nginx
+server {
+    listen 443 ssl;
+    ssl_certificate ssl_key/server.crt;
+    ssl_certificate ssl_key/server.key;
+    # 让php支持https
+    fastcgi_param HTTPS on;
+}
+
+# 80跳转443
+server {
+    listen 80;
+    server_name www.wp.com;
+    return 302 https://$server_name$request_uri;
 }
 ```
 
